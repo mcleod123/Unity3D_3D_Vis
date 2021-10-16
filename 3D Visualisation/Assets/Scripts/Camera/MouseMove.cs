@@ -32,12 +32,15 @@ public class MouseMove : MonoBehaviour
         {
             MyAngle = 0;
 
-            //MyAngle = sensitivity * ((MousePos.x - (Screen.width / 2)) / Screen.width);
-            //goCamera.transform.RotateAround(go.transform.position, goCamera.transform.up, MyAngle);
+            MyAngle = sensitivity * ((MousePos.x - (Screen.width / 2)) / Screen.width);
+            goCamera.transform.RotateAround(go.transform.position, goCamera.transform.up, MyAngle);
 
-            MyAngle = sensitivity * ((MousePos.y - (Screen.height / 2)) / Screen.height);
-            goCamera.transform.RotateAround(go.transform.position, goCamera.transform.right, -MyAngle);
+            // MyAngle = sensitivity * ((MousePos.y - (Screen.height / 2)) / Screen.height);
+            // goCamera.transform.RotateAround(go.transform.position, goCamera.transform.right, -MyAngle);
 
+            // --------
+            //MyAngle = sensitivity * ((MousePos.y - (Screen.height / 2)) / Screen.height);
+            //goCamera.transform.Rotate(go.transform.position.x, goCamera.transform.right.y, -MyAngle);
 
 
         }

@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\DataScripts\VariablesData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\SimpleSky\ReadMe.txt" />
     <None Include="Assets\Single_detailed_truck\readme.txt" />
   </ItemGroup>
   <ItemGroup>
