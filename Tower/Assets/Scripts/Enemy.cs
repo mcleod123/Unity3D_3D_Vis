@@ -2,16 +2,20 @@
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed = 2f;
+    public float MaxLife = 100f;
 
     private Transform waypoints;
     private Transform waypoint;
     private int waypointIndex = -1;
+    private float life;
 
     void Start()
     {
         waypoints = GameObject.Find("WayPoints").transform;
         NextWaypoint();
+
+        life = MaxLife;
     }
 
     void Update()
@@ -24,7 +28,7 @@ public class Enemy : MonoBehaviour
 
         if (dir.magnitude <= _speed)
             NextWaypoint();
-    }
+        }
 
     void NextWaypoint()
     {
@@ -37,5 +41,17 @@ public class Enemy : MonoBehaviour
         }
 
         waypoint = waypoints.GetChild(waypointIndex);
+    }
+
+    public void SetDamage(float value)
+    {
+
+        life -= value;
+
+        if(life <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

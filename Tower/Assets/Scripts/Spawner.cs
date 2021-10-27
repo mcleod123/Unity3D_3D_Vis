@@ -5,8 +5,13 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
+    // кого мы спауним
     public GameObject spawnObject;
+
+    // че это длять такое?
     public float spawnTime = 0.3f;
+
+    // задержка перед началом волны
     private float timer = 0;
 
 
