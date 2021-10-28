@@ -8,6 +8,9 @@ public class TowerPlace : MonoBehaviour
     bool isCanBuild = true;
     public GameObject tower;
 
+    private Color _emptyColor = new Color(0f, 0.7f, 0f, 0.1f);
+    private Color _selectionColor = new Color(0.1f, 0.8f, 0.1f, 0.5f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,8 @@ public class TowerPlace : MonoBehaviour
         {
             isCanBuild = false;
             Instantiate(tower, transform.position, transform.rotation);
-            GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            // GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            GetComponent<Renderer>().material.color = _emptyColor;
         }
     }
 
@@ -40,7 +44,8 @@ public class TowerPlace : MonoBehaviour
     {
         if(isCanBuild)
         {
-            GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+            // GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+            GetComponent<Renderer>().material.color = _selectionColor;
         }
     }
 
@@ -48,7 +53,8 @@ public class TowerPlace : MonoBehaviour
     {
         if(isCanBuild)
         {
-            GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            // GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            GetComponent<Renderer>().material.color = _emptyColor;
         }
 
     }

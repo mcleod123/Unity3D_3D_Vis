@@ -2133,7 +2133,7 @@ Transform:
   m_GameObject: {fileID: 706749480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3553,9 +3553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80906663292c93c4fb377af74176c580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 2489479646648284609, guid: f9e82a9196cbed8499966f1b06190906,
+  enemyPrefabItem: {fileID: 2489479646648284609, guid: f9e82a9196cbed8499966f1b06190906,
     type: 3}
-  spawnTime: 1
 --- !u!65 &1276273040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3625,7 +3624,7 @@ Transform:
   m_GameObject: {fileID: 1276273038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.41, y: 0.3, z: 2.923}
-  m_LocalScale: {x: 1, y: 0.6, z: 1.30138}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5

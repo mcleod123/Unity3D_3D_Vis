@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-
-    public float FindRadius = 2f;
-    public float TimeShoot = 0.1f;
     public GameObject bullet;
 
     Enemy enemy;
     Transform towerHead;
+    private float FindRadius = 2f;
+    private float TimeShoot = 0.8f;
     private float timerShoot = 1f;
+    private string _shootObjectName = "BulletsSpace";
+    private string _headTowerObjectName = "Head";
 
     // Start is called before the first frame update
     void Start()
     {
-        towerHead = transform.Find("Head");
+        towerHead = transform.Find(_headTowerObjectName);
     }
 
 
@@ -27,8 +28,14 @@ public class Tower : MonoBehaviour
         if(timerShoot <= 0)
         {
             timerShoot = TimeShoot;
-            GameObject obj = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation);
-            Bullet b = obj.GetComponent<Bullet>();
+
+            // 
+            GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation);
+            // GameObject bulletAfterShoot = Instantiate(bullet, transform.position, transform.rotation, GameObject.Find(_shootObjectName).transform);
+
+
+
+            Bullet b = bulletAfterShoot.GetComponent<Bullet>();
             b.Enemy = enemy;
         }
     }

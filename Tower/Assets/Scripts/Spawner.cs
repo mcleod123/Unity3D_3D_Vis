@@ -6,13 +6,15 @@ public class Spawner : MonoBehaviour
 {
 
     // кого мы спауним
-    public GameObject spawnObject;
+    public GameObject enemyPrefabItem;
 
-    // че это длять такое?
-    public float spawnTime = 0.3f;
+    // задержка перед рождением объекта
+    private float spawnTime = 2f;
 
     // задержка перед началом волны
-    private float timer = 0;
+    private float _spawnEnemyItemsInterval = 0;
+
+    private string _spawnObjectName = "Spawner";
 
 
     // Start is called before the first frame update
@@ -24,12 +26,29 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+        _spawnEnemyItemsInterval -= Time.deltaTime;
 
-        if (timer <= 0)
+        if (_spawnEnemyItemsInterval <= 0)
         {
-            Instantiate(spawnObject, transform.position, transform.rotation);
-            timer = spawnTime;
+            Instantiate(enemyPrefabItem, transform.position, transform.rotation, GameObject.Find(_spawnObjectName).transform);
+            _spawnEnemyItemsInterval = spawnTime;
         }
     }
+
+
+    // отловить событие начала игры и тыкнуть картуину
+    // StartCoroutine(TestCoroutine());
+
+    /*
+     
+     IEnumerator TestCoroutine()
+        {
+	        while(true)
+	        {
+		        yield return null;
+		        Debug.Log(Time.deltaTime);
+	        }
+        }
+     */
+
 }
