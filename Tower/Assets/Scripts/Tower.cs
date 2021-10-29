@@ -85,4 +85,32 @@ public class Tower : MonoBehaviour
 
         enemy = minEnemy;
     }
+
+
+
+
+
+    void Awake()
+    {
+        // подписка на событие - смерть врага
+        EventAggregator.Subscribe<EnemyDeathEventData>(OnEnemyDeathEventHandler);
+    }
+
+    private void OnDestroy()
+    {
+        // отписка от события - смерть врага
+        EventAggregator.Unsubscribe<EnemyDeathEventData>(OnEnemyDeathEventHandler);
+    }
+
+
+
+
+    private void OnEnemyDeathEventHandler(object sender, EnemyDeathEventData eventData)
+    {
+        // Debug.Log("Башня радуется что кого-то убила! Это: " + eventData.Enemy + " Очки: " + eventData.EnemyDeathCost );
+    }
+
+
+
+
 }

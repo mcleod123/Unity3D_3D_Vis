@@ -7,44 +7,56 @@ public class TowerPlace : MonoBehaviour
 
     bool isCanBuild = true;
     public GameObject tower;
+    CoinsController coinsController;
 
-    private Color _emptyColor = new Color(0f, 0.7f, 0f, 0.1f);
-    private Color _selectionColor = new Color(0.1f, 0.8f, 0.1f, 0.5f);
 
-    // Start is called before the first frame update
-    void Start()
+    private Color _emptyColor = SettingsController.EmptyTowerPlaceColor;
+    private Color _selectionColor = SettingsController.SelectionTowerPlaceColor;
+
+    private int _towerBuildingCost = SettingsController.TowerBuildingCost;
+
+    private void Awake()
     {
-        
+        coinsController = CoinsController.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnMouseDown()
     {
+
+        // если не хватает на постройку
+        if(!coinsController.AreWeCanBuildBuildings(_towerBuildingCost))
+        {
+            isCanBuild = false;
+        } 
+        else
+        {
+            isCanBuild = true;
+        }
+
+
+
         if (isCanBuild) 
         {
             isCanBuild = false;
             Instantiate(tower, transform.position, transform.rotation);
-            // GetComponent<Renderer>().material.color = new Color(1, 1, 1);
             GetComponent<Renderer>().material.color = _emptyColor;
+
+            // событие постройки башни
+            var eventData = new TowerBuildingEventData() { TowerTypeData=TowerType.Duck, TowerBuildingCost=_towerBuildingCost };
+            EventAggregator.Post(this, eventData);
         }
     }
 
-
     public void OnMouseUp()
     {
-
+        
     }
 
     public void OnMouseEnter()
     {
         if(isCanBuild)
         {
-            // GetComponent<Renderer>().material.color = new Color(1, 0, 0);
             GetComponent<Renderer>().material.color = _selectionColor;
         }
     }
@@ -53,9 +65,10 @@ public class TowerPlace : MonoBehaviour
     {
         if(isCanBuild)
         {
-            // GetComponent<Renderer>().material.color = new Color(1, 1, 1);
             GetComponent<Renderer>().material.color = _emptyColor;
         }
-
     }
+
+
+
 }

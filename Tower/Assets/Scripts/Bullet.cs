@@ -5,17 +5,19 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public float Speed = 15f;
-    public float TimeLife = 1f;
+    // public
     public Enemy Enemy;
-    public float Damage = 25f;
 
-    float timerLife = 0f;
+    // private
+    private float _bulletSpeed = SettingsController.TowerBulletSpeed;
+    private float _bulletTimeLife = SettingsController.TowerBulletTimeLife;
+    private float _bulletDamage = SettingsController.TowerBulletDamage;
+    private float _bulletTimerLife;
 
 
     void Start()
     {
-        timerLife = TimeLife;
+        _bulletTimerLife = _bulletTimeLife;
     }
 
     void Update()
@@ -26,16 +28,16 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        timerLife -= Time.deltaTime;
+        _bulletTimerLife -= Time.deltaTime;
 
         Vector3 dir = Enemy.transform.position - transform.position;
-        float _speed = Speed * Time.deltaTime;
+        float _speed = _bulletSpeed * Time.deltaTime;
 
-        if (timerLife <= 0)
+        if (_bulletTimerLife <= 0)
         {
 
             // время жизни пули закончилось
-            timerLife = TimeLife;
+            _bulletTimerLife = _bulletTimeLife;
             Destroy(gameObject);
         }
         else if (Mathf.Round(dir.magnitude) <= _speed)
@@ -44,13 +46,13 @@ public class Bullet : MonoBehaviour
             if (Enemy != null)
             {
                 // пул попала в ццель
-                Enemy.SetDamage(Damage);
+                Enemy.SetDamage(_bulletDamage);
                 Destroy(gameObject);
                 return;
             }
 
         }
 
-        transform.Translate(new Vector3(0, 0, Speed));
+        transform.Translate(new Vector3(0, 0, _bulletSpeed));
     }
 }

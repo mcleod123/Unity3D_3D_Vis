@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    Camera camera;
-    TowerPlace currTP;
+
+
+    private Camera camera;
+    private TowerPlace currentTowerPlace;
+
 
     // Start is called before the first frame update
     void Start()
     {
         camera = GetComponent<Camera>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -27,31 +31,31 @@ public class CameraScript : MonoBehaviour
             bool isMouseUp = Input.GetMouseButtonUp(0);
 
 
-            TowerPlace tp = hit.collider.gameObject.GetComponent<TowerPlace>();
+            TowerPlace towerPlace = hit.collider.gameObject.GetComponent<TowerPlace>();
 
             if (isMouseDown || isMouseUp)
             {
  
                 if(isMouseDown)
                 {
-                    tp.OnMouseDown();
+                    towerPlace.OnMouseDown();
                 } 
                 else if (isMouseUp)
                 {
-                    tp.OnMouseUp();
+                    towerPlace.OnMouseUp();
                 }
             } 
             else
             {
-                if (currTP != tp)
+                if (currentTowerPlace != towerPlace)
                 {
-                    if (currTP!=null)
+                    if (currentTowerPlace!=null)
                     {
-                        currTP.OnMouseExit();
+                        currentTowerPlace.OnMouseExit();
                     }
 
-                    tp.OnMouseEnter();
-                    currTP = tp;
+                    towerPlace.OnMouseEnter();
+                    currentTowerPlace = towerPlace;
                 }
 
             }
@@ -59,12 +63,12 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            if (currTP != null)
+            if (currentTowerPlace != null)
             {
-                currTP.OnMouseExit();
+                currentTowerPlace.OnMouseExit();
             }
 
-            currTP = null;
+            currentTowerPlace = null;
         }
 
 
