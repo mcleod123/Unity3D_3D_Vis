@@ -113,4 +113,28 @@ public class Tower : MonoBehaviour
 
 
 
+    // --------------------------
+    public void OnMouseRightDown()
+    {
+        Debug.Log("OnMouseRightDown");
+        //GetComponent<Renderer>().material.color = _deleteColor;
+    }
+
+    public void OnMouseRightUp()
+    {
+        Debug.Log("OnMouseRightUp");
+        //GetComponent<Renderer>().material.color = _deleteColor;
+
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+        {
+            print(hit.transform.name);
+        }
+
+    }
+
+
+
+
+
+
 }

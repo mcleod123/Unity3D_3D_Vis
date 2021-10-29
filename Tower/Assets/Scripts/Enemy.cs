@@ -53,6 +53,9 @@ public class Enemy : MonoBehaviour
         waypointIndex++;
         if (waypointIndex >= waypoints.childCount)
         {
+
+            Debug.Log("КОтик вынес вам жизнь!");
+
             Destroy(gameObject);
             return;
         }

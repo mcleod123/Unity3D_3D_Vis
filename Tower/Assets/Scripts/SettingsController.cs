@@ -14,6 +14,7 @@ public class SettingsController : MonoBehaviour
     // TowerPlace
     public static Color EmptyTowerPlaceColor = new Color(0f, 0.7f, 0f, 0.1f);
     public static Color SelectionTowerPlaceColor = new Color(0.1f, 0.8f, 0.1f, 0.5f);
+    public static Color DeleteTowerPlaceColor = new Color(0.9f, 0f, 0f, 0.5f);
 
 
     // 1) Tower

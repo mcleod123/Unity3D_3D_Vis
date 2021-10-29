@@ -16,14 +16,30 @@ public class EnemyDeathEventData
 }
 
 
-
-
-
 public class TowerBuildingEventData
 {
     public TowerType TowerTypeData;
     public int TowerBuildingCost;
 }
+
+
+public class EnemyWasMovedToFinish
+{
+    public EnemyType Enemy;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

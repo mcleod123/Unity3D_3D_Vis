@@ -9,6 +9,9 @@ public class CameraScript : MonoBehaviour
     private Camera camera;
     private TowerPlace currentTowerPlace;
 
+    private string _towerPlaceTagName = "TowerPlace";
+    private string _towerTagName = "Tower";
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +27,12 @@ public class CameraScript : MonoBehaviour
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "TowerPlace" )
+        if(Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == _towerPlaceTagName)
         {
 
             bool isMouseDown = Input.GetMouseButtonDown(0);
             bool isMouseUp = Input.GetMouseButtonUp(0);
+
 
 
             TowerPlace towerPlace = hit.collider.gameObject.GetComponent<TowerPlace>();
@@ -60,6 +64,10 @@ public class CameraScript : MonoBehaviour
 
             }
 
+
+
+
+
         }
         else
         {
@@ -70,6 +78,39 @@ public class CameraScript : MonoBehaviour
 
             currentTowerPlace = null;
         }
+
+
+
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == _towerTagName)
+        {
+            // ===========
+            // Right Click
+            // ===========
+
+            Debug.Log("Тыкнули по утке");
+            Debug.Log(hit.collider.gameObject.tag.ToString());
+
+                bool isMouseRightDown = Input.GetMouseButtonDown(1);
+                bool isMouseRightUp = Input.GetMouseButtonUp(1);
+
+            Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+
+            if (isMouseRightDown || isMouseRightUp)
+            {
+                    if (isMouseRightDown)
+                    {
+                        tower.OnMouseRightDown();
+                    }
+                    else if (isMouseRightUp)
+                    {
+                        tower.OnMouseRightUp();
+                    }
+            }
+
+                // ===========       
+        }
+
+
 
 
 

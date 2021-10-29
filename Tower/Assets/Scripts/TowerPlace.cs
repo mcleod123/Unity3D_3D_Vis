@@ -13,6 +13,8 @@ public class TowerPlace : MonoBehaviour
     private Color _emptyColor = SettingsController.EmptyTowerPlaceColor;
     private Color _selectionColor = SettingsController.SelectionTowerPlaceColor;
 
+    private Color _deleteColor = SettingsController.DeleteTowerPlaceColor;
+
     private int _towerBuildingCost = SettingsController.TowerBuildingCost;
 
     private void Awake()
@@ -23,6 +25,11 @@ public class TowerPlace : MonoBehaviour
 
     public void OnMouseDown()
     {
+
+        if (coinsController == null)
+        {
+            coinsController = CoinsController.Instance;
+        }
 
         // если не хватает на постройку
         if(!coinsController.AreWeCanBuildBuildings(_towerBuildingCost))
@@ -40,11 +47,15 @@ public class TowerPlace : MonoBehaviour
         {
             isCanBuild = false;
             Instantiate(tower, transform.position, transform.rotation);
-            GetComponent<Renderer>().material.color = _emptyColor;
+            //GetComponent<Renderer>().material.color = _emptyColor;
 
             // событие постройки башни
             var eventData = new TowerBuildingEventData() { TowerTypeData=TowerType.Duck, TowerBuildingCost=_towerBuildingCost };
             EventAggregator.Post(this, eventData);
+
+            // удалим клетку
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -57,7 +68,7 @@ public class TowerPlace : MonoBehaviour
     {
         if(isCanBuild)
         {
-            GetComponent<Renderer>().material.color = _selectionColor;
+            // GetComponent<Renderer>().material.color = _selectionColor;
         }
     }
 
@@ -65,9 +76,13 @@ public class TowerPlace : MonoBehaviour
     {
         if(isCanBuild)
         {
-            GetComponent<Renderer>().material.color = _emptyColor;
+            //GetComponent<Renderer>().material.color = _emptyColor;
         }
     }
+
+
+
+
 
 
 
