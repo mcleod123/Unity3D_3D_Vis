@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86892104d341664e9d9694b43e5ef1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  MaxLife: 100
+  _enemyCatDiedEffect: {fileID: 6777685685900753034, guid: 406f5a35783b99646b0b61ca0224a2fd,
+    type: 3}
 --- !u!1001 &7787352331401784527
 PrefabInstance:
   m_ObjectHideFlags: 0
