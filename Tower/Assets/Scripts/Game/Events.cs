@@ -9,6 +9,12 @@ public class Events
 }
 
 
+public class GameIsStarted
+{
+
+}
+
+
 public class EnemyDeathEventData
 {
     public EnemyType Enemy;

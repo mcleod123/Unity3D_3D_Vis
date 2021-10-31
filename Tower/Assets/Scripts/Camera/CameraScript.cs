@@ -24,6 +24,18 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
+        if (GameController.Instance.AreGameIsStarting() == true)
+        {
+            BuildTheTowers();
+        }
+
+
+    }
+
+
+    private void BuildTheTowers()
+    {
+
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -111,8 +123,7 @@ public class CameraScript : MonoBehaviour
         }
 
 
-
-
-
     }
+
+
 }

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _enemyCatDiedEffect;
 
     private int EnemyDeathCost = SettingsController.EnemyDeathCost;
+    private GameObject _forTrashContainer;
 
     private Transform waypoints;
     private Transform waypoint;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         // waypoints = GameObject.Find("WayPoints").transform;
         waypoints = GameObject.Find(_wayPointsGroup).transform;
+        _forTrashContainer = GameObject.Find(SettingsController.TrashContainerObjectName);
         NextWaypoint();
         life = MaxLife;
     }
@@ -58,7 +60,7 @@ public class Enemy : MonoBehaviour
         if (waypointIndex >= waypoints.childCount)
         {
 
-            // событие при котором враг доходит до финиша и забирает жизнь
+            // событие при котором враг доходит до финиша и забирает жизнь игрока
             var eventData = new EnemyWasMovedToFinish() { Enemy = EnemyType.EnemyCat };
             EventAggregator.Post(this, eventData);
 
@@ -66,6 +68,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+
+
         waypoint = waypoints.GetChild(waypointIndex);
     }
 
@@ -79,11 +84,12 @@ public class Enemy : MonoBehaviour
             var eventData = new EnemyDeathEventData() { Enemy = EnemyType.EnemyCat, EnemyDeathCost = EnemyDeathCost };
             EventAggregator.Post(this, eventData);
 
-            // звук убили врага котика
+            // звук - убили врага котика
             AudioManager.PlaySFX(SFXType.EnemyCatDied);
 
             // _enemyCatDiedEffect
-            GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);
+            //GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation);
+            GameObject effectGameObjectToDestroy = Instantiate(_enemyCatDiedEffect, transform.position, transform.rotation, _forTrashContainer.transform);
             //StartCoroutine(DestroyEffectObject(effectGameObjectToDestroy));
 
             // убили обьект

@@ -12,20 +12,28 @@ public class Spawner : MonoBehaviour
     private float spawnTime = 2f;
 
     // задержка перед началом волны
-    private float _spawnEnemyItemsInterval = 0;
+    private float _spawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsInterval;
 
     private string _spawnObjectName = "Spawner";
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(GameController.Instance.AreGameIsStarting() == true)
+        {
+            GenerateEnemies();
+        }
+
+    }
+
+
+
+    private void GenerateEnemies()
+    {
+
         _spawnEnemyItemsInterval -= Time.deltaTime;
 
         if (_spawnEnemyItemsInterval <= 0)
@@ -33,7 +41,11 @@ public class Spawner : MonoBehaviour
             Instantiate(enemyPrefabItem, transform.position, transform.rotation, GameObject.Find(_spawnObjectName).transform);
             _spawnEnemyItemsInterval = spawnTime;
         }
+
+        //_spawnEnemyItemsInterval = SettingsController.SpawnEnemyItemsInterval;
     }
+
+
 
 
     // отловить событие начала игры и тыкнуть картуину

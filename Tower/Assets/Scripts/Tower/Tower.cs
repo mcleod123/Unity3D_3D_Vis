@@ -11,13 +11,14 @@ public class Tower : MonoBehaviour
     private float FindRadius = 2f;
     private float TimeShoot = 0.8f;
     private float timerShoot = 1f;
-    private string _shootObjectName = "BulletsSpace";
+    private GameObject _forTrashContainer;
     private string _headTowerObjectName = "Head";
 
     // Start is called before the first frame update
     void Start()
     {
         towerHead = transform.Find(_headTowerObjectName);
+        _forTrashContainer = GameObject.Find(SettingsController.TrashContainerObjectName);
     }
 
 
@@ -30,7 +31,8 @@ public class Tower : MonoBehaviour
             timerShoot = TimeShoot;
 
             // 
-            GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation);
+            // GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation);
+            GameObject bulletAfterShoot = Instantiate(bullet, towerHead.transform.position, towerHead.transform.rotation, _forTrashContainer.transform);
             // GameObject bulletAfterShoot = Instantiate(bullet, transform.position, transform.rotation, GameObject.Find(_shootObjectName).transform);
 
 
